@@ -26,4 +26,30 @@ func TestCreate(t *testing.T) {
 		assert.Nil(t, err)
 		assert.NotNil(t, res)
 	})
+
+	t.Run("error userName", func(t *testing.T) {
+		var mock1 = entities.User{UserName: "anonim", Email: shortuuid.New(), Password: shortuuid.New(), Name: shortuuid.New()}
+
+		if _, err := r.Create(mock1); err != nil {
+			t.Log(err)
+			t.Fatal()
+		}
+
+		var _, err = r.Create(mock1)
+
+		assert.NotNil(t, err)
+	})
+
+	t.Run("error email", func(t *testing.T) {
+		var mock1 = entities.User{UserName: shortuuid.New(), Email: "anonim", Password: shortuuid.New(), Name: shortuuid.New()}
+
+		if _, err := r.Create(mock1); err != nil {
+			t.Log(err)
+			t.Fatal()
+		}
+		mock1.UserName = shortuuid.New()
+		var _, err = r.Create(mock1)
+
+		assert.NotNil(t, err)
+	})
 }

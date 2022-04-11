@@ -2,6 +2,7 @@ package user
 
 import (
 	"be/entities"
+	"be/utils"
 	"errors"
 	"strconv"
 
@@ -36,6 +37,22 @@ func (r *Repo) Create(req entities.User) (entities.User, error) {
 
 	if res.RowsAffected != 0 {
 		return entities.User{}, errors.New("user name is already exist")
+	}
+
+	// check email
+
+	res = r.db.Model(&entities.User{}).Where("email = ?", req.Email).Scan(&entities.User{})
+
+	if res.RowsAffected != 0 {
+		return entities.User{}, errors.New("email is already exist")
+	}
+
+	// hash password
+	var err error
+	req.Password, err = utils.HashPassword(req.Password)
+	
+	if err != nil {
+		return entities.User{}, err
 	}
 
 	req.User_uid = uid

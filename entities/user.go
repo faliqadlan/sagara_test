@@ -16,5 +16,5 @@ type User struct {
 	Password  string         `gorm:"not null;type:varchar(100)"`
 	Name      string
 	Image     string    `gorm:"default:'https://www.teralogistics.com/wp-content/uploads/2020/12/default.png'"`
-	Products  []Product `gorm:"foreignKey:product_uid;references:product_uid"`
+	Products  []Product `gorm:"foreignKey:user_uid;references:user_uid"`
 }
