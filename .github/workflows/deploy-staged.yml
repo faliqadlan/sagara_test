@@ -26,13 +26,13 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: faliqadlan/img-be:latest
+          tags: faliqadlan/sagara:latest
       
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: applu be-deploy.yaml
+          args: apply be-deploy.yaml
       
       - uses: actions-hub/kubectl@master
         env:
