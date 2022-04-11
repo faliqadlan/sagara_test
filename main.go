@@ -5,10 +5,13 @@ import (
 	"be/api/aws/s3"
 	"be/configs"
 	"be/delivery/controllers/auth"
+	"be/delivery/controllers/product"
 	"be/delivery/controllers/user"
+	productLogic "be/delivery/logic/product"
 	userLogic "be/delivery/logic/user"
 	"be/delivery/routes"
 	authRepo "be/repository/auth"
+	productRepo "be/repository/product"
 	userRepo "be/repository/user"
 	"be/utils"
 	"fmt"
@@ -32,8 +35,11 @@ func main() {
 	var userLogic = userLogic.New()
 	var userCont = user.New(userRepo, awsS3, userLogic)
 
+	var productRepo = productRepo.New(db)
+	var productLogic = productLogic.New()
+	var productCont = product.New(productRepo, awsS3, productLogic)
 	var e = echo.New()
 
-	routes.Routes(e, authCont, userCont)
+	routes.Routes(e, authCont, userCont, productCont)
 	log.Fatal(e.Start(fmt.Sprintf(":%d", config.PORT)))
 }
