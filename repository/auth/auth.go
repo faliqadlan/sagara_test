@@ -27,7 +27,7 @@ func (r *Repo) Login(userName, password string) (string, error) {
 	}
 
 	if !utils.CheckPasswordHash(password, user.Password) {
-		return "", errors.New("password is not correct")
+		return "", errors.New("incorrect password")
 	}
 
 	return user.User_uid, nil
