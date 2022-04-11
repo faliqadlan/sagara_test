@@ -28,11 +28,24 @@ jobs:
           push: true
           tags: faliqadlan/sagara:latest
       
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      - name: checkout
+        uses: actions/checkout@master
+      
+      - name: login okteto
+        uses: okteto/login@latest
         with:
-          args: apply be-deploy.yaml
+          token: ${{ secrets.OKTETO_TOKEN }}
+      
+      - name:  "Activate personal namespace"
+        uses: okteto/namespace@latest
+        with:
+          namespace: faliqadlan
+      
+      - name: "create deployment"
+        uses: okteto/apply@latest
+        with:
+          namespace: faliqadlan
+          manifest: be-deploy.yaml
       
       - uses: actions-hub/kubectl@master
         env:
