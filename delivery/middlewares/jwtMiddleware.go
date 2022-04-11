@@ -26,7 +26,7 @@ func GenerateToken(uid string) (string, error) {
 }
 
 func ExtractTokenUid(e echo.Context) (uid string) {
-	user := e.Get("").(*jwt.Token) //convert to jwt token from interface
+	user := e.Get("user").(*jwt.Token) //convert to jwt token from interface
 	if user.Valid {
 		codes := user.Claims.(jwt.MapClaims)
 		uid := codes["uid"].(string)

@@ -88,7 +88,7 @@ func (cont *Controller) Create() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, templates.InternalServerError(nil, err.Error(), nil))
 		}
 
-		return c.JSON(http.StatusCreated, templates.Success(http.StatusCreated, "success add user", nil))
+		return c.JSON(http.StatusCreated, templates.Success(http.StatusCreated, "success add product", nil))
 	}
 }
 
