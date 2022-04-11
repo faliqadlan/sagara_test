@@ -42,6 +42,8 @@ func (cont *Controller) Create() echo.HandlerFunc {
 				err = errors.New("invalid password format")
 			case strings.Contains(err.Error(), "name"):
 				err = errors.New("invalid name format")
+			default:
+				err = errors.New("invalid input")
 			}
 			return c.JSON(http.StatusBadRequest, templates.BadRequest(nil, err.Error(), nil))
 		}
