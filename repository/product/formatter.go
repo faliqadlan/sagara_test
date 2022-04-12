@@ -1,6 +1,7 @@
 package product
 
 type GetResponse struct {
+	Product_uid string `json:"product_uid"`
 	NameUser    string `json:"nameUser"`
 	NameProduct string `json:"nameProduct"`
 	Price       string `json:"price"`

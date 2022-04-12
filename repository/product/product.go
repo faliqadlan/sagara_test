@@ -85,7 +85,7 @@ func (r *Repo) Get(user_uid, product_uid string) (GetResponses, error) {
 
 	var result GetResponses
 
-	var res = r.db.Model(&entities.Product{}).Select("users.name as NameUser, products.Name as NameProduct, price as Price, description as Description, stock as Stock, products.image as Image").Joins("inner join users on products.user_uid = users.user_uid").Where(condition).Find(&result.Responses)
+	var res = r.db.Model(&entities.Product{}).Select("products.product_uid as Product_uid ,users.name as NameUser, products.Name as NameProduct, price as Price, description as Description, stock as Stock, products.image as Image").Joins("inner join users on products.user_uid = users.user_uid").Where(condition).Find(&result.Responses)
 
 	if product_uid != "" && res.RowsAffected == 0 {
 		return GetResponses{}, gorm.ErrRecordNotFound
