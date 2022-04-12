@@ -206,7 +206,7 @@ func (cont *Controller) Delete() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, templates.InternalServerError(nil, err.Error(), nil))
 		}
 
-		return c.JSON(http.StatusCreated, templates.Success(http.StatusCreated, "success delete product", nil))
+		return c.JSON(http.StatusAccepted, templates.Success(http.StatusAccepted, "success delete product", nil))
 	}
 }
 
@@ -222,7 +222,7 @@ func (cont *Controller) Get() echo.HandlerFunc {
 		}
 		// get product
 
-		_, err := cont.r.Get(user_uid, product_uid)
+		res, err := cont.r.Get(user_uid, product_uid)
 
 		if err != nil {
 			log.Warn(err)
@@ -233,6 +233,6 @@ func (cont *Controller) Get() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, templates.InternalServerError(nil, err.Error(), nil))
 		}
 
-		return c.JSON(http.StatusCreated, templates.Success(http.StatusCreated, "success get product", nil))
+		return c.JSON(http.StatusOK, templates.Success(http.StatusOK, "success get product", res))
 	}
 }
