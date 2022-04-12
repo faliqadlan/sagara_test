@@ -59,7 +59,7 @@ func (r *Repo) Update(product_uid string, req entities.Product) (entities.Produc
 	})
 
 	if res.RowsAffected == 0 {
-		return entities.Product{}, res.Error
+		return entities.Product{}, gorm.ErrRecordNotFound
 	}
 
 	return req, nil
