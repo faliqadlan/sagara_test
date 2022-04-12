@@ -6,6 +6,10 @@
 [![Go.Dev reference](https://img.shields.io/badge/-gorm%20-05122A?style=flat&logo=go)](https://pkg.go.dev/gorm.io/gorm?tab=doc)
 [![Go.Dev reference](https://img.shields.io/badge/-aws--s3%20-05122A?style=flat&logo=Amazon%20Aws)](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/go/example_code/s3)
 
+[OPEN API](https://app.swaggerhub.com/apis/faliqadlan/simple_api/1.0.0-oas3)
+
+[POSTMANT](https://app.getpostman.com/join-team?invite_code=6f3882e5cbe848756e6092ae1da4c01f&target_code=caacbce1308cdc5235798d61c97e631a)
+
 <details>
 <summary>ERD</summary>
 <img src="images/erd.png">
