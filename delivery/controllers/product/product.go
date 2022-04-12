@@ -221,7 +221,8 @@ func (cont *Controller) Get() echo.HandlerFunc {
 			user_uid = ""
 		}
 		// get product
-
+		// log.Info(user_uid)
+		// log.Info(product_uid)
 		res, err := cont.r.Get(user_uid, product_uid)
 
 		if err != nil {

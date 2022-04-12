@@ -157,5 +157,8 @@ func TestGet(t *testing.T) {
 		res3, err = r.Get(res.User_uid, res2.Product_uid)
 		assert.Nil(t, err)
 		assert.Equal(t, 1, len(res3.Responses))
+		res3, err = r.Get("", res2.Product_uid)
+		assert.Nil(t, err)
+		assert.Equal(t, 1, len(res3.Responses))
 	})
 }
